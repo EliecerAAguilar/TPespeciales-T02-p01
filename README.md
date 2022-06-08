@@ -1,2 +1,4 @@
-# TPespeciales-T02-p01
-python-sqlite
+# Topicos Especiales 2
+## Tarea 2
+### Problema 1
+

@@ -68,8 +68,8 @@ def main():
                                     (SELECT GenreId FROM genres WHERE Name LIKE '%punk%')
                             )""",
                             {
-                                'subgenrename' : subgen_list[x][0],
-                                'subgenrealtname' : subgen_list[x][1]
+                                'subgenrename':subgen_list[x][0],
+                                'subgenrealtname':subgen_list[x][1]
                             }
                             )
 
@@ -94,7 +94,7 @@ def main():
         album_title = "13 Songs"
         cursor.execute("""INSERT INTO albums(Title,ArtistId)
                         VALUES(:Title, :ArtistId)""",
-                       {'Title' : album_title,'ArtistId': artist_id[0]})
+                       {'Title' : album_title, 'ArtistId': artist_id[0]})
         cursor.execute("""SELECT last_insert_rowid()""")
         album_id = cursor.fetchone()
         chinook_db.commit()
@@ -132,8 +132,9 @@ def main():
                     ("Burning", album_id[0], 1, 4, "Ted Niceley", 2390, 30000000, 5.99, subgenre_id[0]),
                     ("Give Me the Cure", album_id[0], 1, 4, "Ted Niceley", 2580, 47000000, 5.99, subgenre_id[0]),
                 ]
-        cursor.executemany("""INSERT INTO tracks(Name, AlbumId, MediaTypeId,GenreId,Composer,Milliseconds,Bytes,UnitPrice,subgenere)
-            VALUES(?, ?, ?,?,?,?,?,?,?)""", data)
+        cursor.executemany("""INSERT INTO tracks(Name, AlbumId, MediaTypeId,GenreId,
+                                                Composer,Milliseconds,Bytes,UnitPrice,subgenere)
+                            VALUES(?, ?, ?,?,?,?,?,?,?)""", data)
         chinook_db.commit()
         """cerrar conexion a la base de datos"""
         chinook_db.close()

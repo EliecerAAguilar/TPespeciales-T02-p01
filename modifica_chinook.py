@@ -74,12 +74,63 @@ def main():
         """ejecutar el query"""
         chinook_db.commit()
 
+        """agregar una nueva columna a la tabla tracks """
+        cursor.execute("""ALTER TABLE tracks ADD subgenere VARCHAR(150)""")
+        chinook_db.commit()
 
-        # """retornar los valores consultados"""
-        # first = cursor.fetchone()
-        #
-        # """imprimir los valores seleccionados"""
-        # print("{0} {1}".format(first[0], first[1]))
+        """generar 5 nuevas canciones en la tablas tracks"""
+        artist_name = "Joe Lally"
+        cursor.execute("""INSERT INTO artists(Name)
+                        VALUES(?)""",
+                       artist_name
+                       )
+        cursor.execute("SELECT last_insert_rowid()")
+        artist_id = cursor.fetchone()
+        chinook_db.commit()
+
+        album_title = "13 Songs"
+        cursor.execute("""INSERT INTO albums(Title)
+                        VALUES(?)""",
+                       album_title)
+        cursor.execute("SELECT last_insert_rowid()")
+        albun_id = cursor.fetchone()
+        chinook_db.commit()
+
+        subgenre_name = "punk rock"
+        cursor.execute("""INSERT INTO subgenres(subgrenrename)
+                                VALUES(?)""",
+                       subgenre_name
+                       )
+        cursor.execute("SELECT last_insert_rowid()")
+        subgenre_id = cursor.fetchone()
+        chinook_db.commit()
+
+        """
+            TIPOS DE MEDIA... Media_types table
+            1,MPEG audio file
+            2,Protected AAC audio file
+            3,Protected MPEG-4 video file
+            4,Purchased AAC audio file
+            5,AAC audio file
+        """
+
+        """
+            genres table
+            id, Name
+            4,Alternative & Punk
+        """
+
+        """https://music.apple.com/us/album/waiting-room/49249845?i=49249816"""
+        data = [
+                    ("Waiting Room", albun_id, 1, 4, "Ted Niceley", 2530, 47000000, 5.99, subgenre_id),
+                    ("Bulldog Front", albun_id, 1, 4, "Ted Niceley", 2530, 47000000, 5.99, subgenre_id),
+                    ("Bad Mouth", albun_id, 1, 4, "Ted Niceley", 2350, 28000000, 5.99, subgenre_id),
+                    ("Burning", albun_id, 1, 4, "Ted Niceley", 2390, 30000000, 5.99, subgenre_id),
+                    ("Give Me the Cure", albun_id, 1, 4, "Ted Niceley", 2580, 47000000, 5.99, subgenre_id),
+                ]
+        cursor.execute("""INSERT INTO tracks( Name, AlbumId, MediaTypeId,GenreId,Composer,Milliseconds,Bytes,UnitPrice,subgenere)
+                VALUES(?, ?, ?,?,?,?,?,?,?)""",
+                data)
 
         """cerrar conexion a la base de datos"""
         chinook_db.close()

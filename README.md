@@ -20,6 +20,6 @@ Usando	la	base	de	datos	chinook,	escriba	un	script	llamado	modifica_chinook.py,	
 1)	Use	los	comandos	de	alterar	tabla	para	crear	una	nueva	tabla	para	subgénero y	llenarla	con	los	subgéneros	de	punk	rock	en	el	
 archivo	subgenres.txt.	Esta	 tabla	debe	 tener	un	subgenreid (clave	primaria),	subgenrename,	subgenrealtname	(en	el	caso	de	que	
 haya	otro	nombre	para	el	subgénero)	y	un	genreid (clave	foránea)	de	la	tabla	de	género.
-2)	Cree	una	nueva	columna	en	las	pistas(tracks)	de	la	tabla	que	permita	al	administrador	de	la	base	de	datos	especificar	un	nuevo	subgénero	
+2)	Cree	una	nueva	columna	en	las	pistas tracks	de	la	tabla[en la tabla track]	que	permita	al	administrador	de	la	base	de	datos	especificar	un	nuevo	subgénero	
 de	la	tabla	que	acaba	de	crear.
 3)	Genere	5	nuevas	canciones	en	las Tabla	Track que	tienen	un	subgénero =	”punk	rock”.

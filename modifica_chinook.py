@@ -75,8 +75,8 @@ def main():
         chinook_db.commit()
 
         """agregar una nueva columna a la tabla tracks """
-        cursor.execute("""ALTER TABLE tracks ADD subgenere VARCHAR(150)""")
-        chinook_db.commit()
+        # cursor.execute("""ALTER TABLE tracks ADD subgenere VARCHAR(150)""")
+        # chinook_db.commit()
 
         """generar 5 nuevas canciones en la tablas tracks"""
         artist_name = "Joe Lally"
@@ -129,8 +129,7 @@ def main():
                     ("Give Me the Cure", albun_id, 1, 4, "Ted Niceley", 2580, 47000000, 5.99, subgenre_id),
                 ]
         cursor.execute("""INSERT INTO tracks( Name, AlbumId, MediaTypeId,GenreId,Composer,Milliseconds,Bytes,UnitPrice,subgenere)
-                VALUES(?, ?, ?,?,?,?,?,?,?)""",
-                data)
+                VALUES(?, ?, ?,?,?,?,?,?,?)""", data)
 
         """cerrar conexion a la base de datos"""
         chinook_db.close()
